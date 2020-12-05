@@ -1,11 +1,11 @@
-import Pallete from "./Pallete";
+import Pallete from "./Pallete/Pallete";
 import "./App.css";
 import seedColors from "./seedColors";
 
 function App() {
   return (
     <div >
-      <Pallete color={seedColors[4]} />
+      <Pallete {...seedColors[5]} />
     </div>
   );
 }
