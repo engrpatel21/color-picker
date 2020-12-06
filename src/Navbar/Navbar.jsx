@@ -2,21 +2,25 @@ import React, { Component } from 'react';
 import './Navbar.css'
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
-import { Select, MenuItem } from '@material-ui/core'
+import { Select, MenuItem, Snackbar, IconButton } from '@material-ui/core'
+import {Close} from '@material-ui/icons'
 
 class Navbar extends Component {
   state = { 
-    format: 'hex'
+    format: 'hex',
+    open: false
   }
-  handleChange = (e) => {
-    this.setState({ format: e.target.value }, () => {
+  handleChangeFormat = (e) => {
+    this.setState({ format: e.target.value, open: !this.state.open }, () => {
       this.props.changeFormat(this.state.format);
     })
-   
+  }
+  handleClose = (e) => {
+    this.setState({open: !this.state.open})
   }
   render() {
-    const { level, changeLevel, colorCode } = this.props
-    const {format} = this.state
+    const { level, changeLevel } = this.props
+    const {format, open} = this.state
     return (
       <header className="Navbar">
         <div className="logo">
@@ -46,12 +50,32 @@ class Navbar extends Component {
           </div>
         </div>
         <div className="select-container">
-          <Select onChange={this.handleChange} value={format}>
+          <Select onChange={this.handleChangeFormat} value={format}>
             <MenuItem value="hex">HEX - #FFFFFF</MenuItem>
             <MenuItem value="rgb">RGB - rgb(255,255,255)</MenuItem>
             <MenuItem value="rgba">RGBA - rgba(255,255,255, 1)</MenuItem>
           </Select>
         </div>
+        <Snackbar
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+          open={open}
+          onClose={this.handleClose}
+          autoHideDuration={3000}
+          message={<span id='message-id'>Formate Changed to {format.toUpperCase()}</span>}
+          contentProps={{
+            'aria-describedby': 'message-id'
+          }}
+          action={[
+            <IconButton
+              onClick={this.handleClose}
+              color='inherit'
+              key='close'
+              aria-label='close'
+            >
+              <Close/>
+            </IconButton>
+          ]}
+        />
       </header>
     );
     }
