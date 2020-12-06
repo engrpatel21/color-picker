@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import './Navbar.css'
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
-import { Select, MenuItem, Snackbar, IconButton } from '@material-ui/core'
-import {Close} from '@material-ui/icons'
+import Select from '@material-ui/core/Select'
+import MenuItem from '@material-ui/core/MenuItem'
+import Snackbar from '@material-ui/core/Snackbar'
+import IconButton from '@material-ui/core/IconButton'
+import Close from '@material-ui/icons/Close'
 
 class Navbar extends Component {
   state = { 
@@ -57,23 +60,27 @@ class Navbar extends Component {
           </Select>
         </div>
         <Snackbar
-          anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+          anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
           open={open}
           onClose={this.handleClose}
           autoHideDuration={3000}
-          message={<span id='message-id'>Formate Changed to {format.toUpperCase()}</span>}
+          message={
+            <span id="message-id">
+              Formate Changed to {format.toUpperCase()}
+            </span>
+          }
           contentProps={{
-            'aria-describedby': 'message-id'
+            "aria-describedby": "message-id",
           }}
           action={[
             <IconButton
               onClick={this.handleClose}
-              color='inherit'
-              key='close'
-              aria-label='close'
+              color="inherit"
+              key="close"
+              aria-label="close"
             >
-              <Close/>
-            </IconButton>
+              <Close />
+            </IconButton>,
           ]}
         />
       </header>
