@@ -2,7 +2,9 @@ import Pallete from "./Pallete/Pallete";
 import "./App.css";
 import seedColors from "./seedColors";
 import generatePalette from './colorHelpers'
-import {Route} from 'react-router-dom'
+import { Route } from 'react-router-dom'
+import PaletteList from "./PaletteList/PaletteList";
+
 
 function App() {
   
@@ -11,7 +13,7 @@ function App() {
   return (
     <div >
       <Route exact path='/'
-        render={() => 'here'} />
+        render={() => <PaletteList palettes={seedColors}/> } />
       <Route exact path='/palette/:id'
         render={(routeProps) => (
           <Pallete palette={generatePalette(
