@@ -83,7 +83,7 @@ export default [
   {
     paletteName: "Flat UI Colors American",
     id: "flat-ui-colors-american",
-    emoji: "Flag: United States",
+    emoji: " 🇺🇸 ",
     colors: [
       { name: "LightGreenishBlue", color: "#55efc4" },
       { name: "FadedPoster", color: "#81ecec" },
